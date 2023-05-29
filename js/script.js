@@ -10,12 +10,12 @@ let personalMovieDB = {
   actors: {},
   genres: [],
   privat: false,
-  showMyDB: function() {
-    if  (!this.privat) {
+  showMyDB() {
+    if (!this.privat) {
       console.log(this);
     }
   },
-  writeYourGenres: function() {
+  writeYourGenres() {
     let counter = 0;
     while (counter <= 2) {
       const genre = prompt(`Ваш любимый жанр под номером ${counter+1}`)
@@ -25,55 +25,42 @@ let personalMovieDB = {
       counter ++;
       this.genres.push(genre);
     }
-    this.genres.forEach(function(item, iter){
-      alert(`Любимый жанр ${iter + 1} - это ${item}`);
-    });
+    this.genres.forEach(genre, i => console.log(`Любимый жанр ${i+1} - это ${genre}`));
   },
-  writeYourMovies: function() {
-    while (counter < 2) {
+  writeYourMovies() {
+    let counter = 0;
+    while (counter <= 0) {
       const movie = prompt("Один из последних просмотренных фильмов?", ""),
-          rate = prompt("На сколько оцените его?", "");
-      if (movie.length == 0 || rate.length == 0 || movie == null || rate == null || movie.length > 50) {
-        continue;
-      }
-      counter++;
-      this.movies[movie] = rate;
+            rate = prompt("На сколько оцените его?", "");
+    if (movie == null || rate == null || movie.length == 0 || rate.length == 0 || movie.length > 50) {
+      continue;
+    }
+    counter++;
+    this.movies[movie] = rate;
     }
   },
-  writeWatchedFilms: function() {
-    if (numberOfFilms < 10){
-      alert("Просмотрено довольно мало фильмов");
-    } else if (numberOfFilms < 31) {
-      alert("Вы классический зритель");
-    } else if (numberOfFilms > 30){
-      alert("Вы киноман");
-    } else {
-      alert("Произошла ошибка")
-    }
+  toggleVisibleMyDB() {
+    this.privat = !this.privat
   },
-  toggleVisibleMyDB: function() {
-    if (this.privat) {
-      this.privat = false;
-    } else {
-      this.privat = true;
-    }
-  }
-  },
-  counter = 0;
 
-personalMovieDB.writeYourMovies();
-personalMovieDB.writeYourGenres();
-personalMovieDB.writeWatchedFilms();
+
+};
 
 
 
 
-personalMovieDB.showMyDB();
+writeYourGenres();
 
-personalMovieDB.toggleVisibleMyDB();
 
-personalMovieDB.showMyDB();
+if (numberOfFilms < 10){
+  alert("Просмотрено довольно мало фильмов");
+} else if (numberOfFilms < 31) {
+  alert("Вы классический зритель");
+} else if (numberOfFilms > 30){
+  alert("Вы киноман");
+} else {
+  alert("Произошла ошибка")
+}
 
-personalMovieDB.toggleVisibleMyDB();
 
-personalMovieDB.showMyDB();
+showMyDB();
